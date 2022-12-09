@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ConnectFragment">
+
+    <ScrollView
+        android:id="@+id/output_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/logcat_start"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/output"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textSize="12sp" />
+    </ScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logcat_start"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_above="@id/logcat_stop"
+        android:layout_marginHorizontal="8dp"
+        android:text="开始记录"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logcat_stop"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="12dp"
+        android:layout_alignParentBottom="true"
+        android:text="停止记录"/>
+
+</RelativeLayout>
