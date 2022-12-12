@@ -5,15 +5,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.draco.ladb.BuildConfig
 import com.draco.ladb.R
 import com.draco.ladb.databinding.ActivityControlBinding
 import com.draco.ladb.fragments.ConnectFragment
+import com.draco.ladb.fragments.InstallFragment
 import com.draco.ladb.fragments.LogFragment
+import com.draco.ladb.fragments.ScreenshotFragment
 import com.draco.ladb.viewmodels.ControlActivityViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -34,10 +39,12 @@ class ControlActivity : AppCompatActivity() {
         override fun getItemCount() = count
 
         override fun createFragment(position: Int): Fragment {
-            when(position) {
-                0 -> return ConnectFragment.newInstance(titles[position])
-                3 -> return LogFragment.newInstance(titles[position])
-                else -> return ConnectFragment.newInstance(titles[0])
+            return when(position) {
+                0 -> ConnectFragment.newInstance(titles[position])
+                1 -> InstallFragment.newInstance(titles[position])
+                2 -> ScreenshotFragment.newInstance(titles[position])
+                3 -> LogFragment.newInstance(titles[position])
+                else -> ConnectFragment.newInstance(titles[0])
             }
         }
     }
@@ -79,6 +86,28 @@ class ControlActivity : AppCompatActivity() {
             R.id.shell -> {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                true
+            }
+            R.id.clear -> {
+                viewModel.clearMessage()
+                true
+            }
+            R.id.share -> {
+                try {
+                    val uri = FileProvider.getUriForFile(
+                        this,
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        viewModel.logFile
+                    )
+                    val intent = Intent(Intent.ACTION_SEND)
+                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .putExtra(Intent.EXTRA_STREAM, uri)
+                        .setType("application/txt")
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this, getString(R.string.snackbar_intent_failed), Toast.LENGTH_SHORT).show()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

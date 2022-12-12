@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.draco.ladb.R
 import com.draco.ladb.databinding.FragmentConnectBinding
 import com.draco.ladb.utils.Constant
 import com.draco.ladb.viewmodels.ControlActivityViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ConnectFragment(private val title: String) : Fragment() {
 

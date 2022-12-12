@@ -31,7 +31,6 @@ class LogFragment(private val title: String) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[ControlActivityViewModel::class.java]
 
-
         viewModel.shellMessage.observe(requireActivity()) { msg ->
             bind.output.text = msg
         }
