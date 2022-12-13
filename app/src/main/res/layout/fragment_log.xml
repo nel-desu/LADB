@@ -31,7 +31,7 @@
         android:layout_height="55dp"
         android:layout_above="@id/logcat_stop"
         android:layout_marginHorizontal="8dp"
-        android:text="开始记录"/>
+        android:text="开始"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logcat_stop"
@@ -40,6 +40,6 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginBottom="12dp"
         android:layout_alignParentBottom="true"
-        android:text="停止记录"/>
+        android:text="停止"/>
 
 </RelativeLayout>

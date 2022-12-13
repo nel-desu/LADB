@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/connect"
         android:layout_marginHorizontal="8dp"
-        android:hint="@string/command_hint_ip">
+        android:hint="输入 IP 地址">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/command"
@@ -56,5 +56,5 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginBottom="12dp"
         android:layout_alignParentBottom="true"
-        android:text="断开所有连接"/>
+        android:text="断开"/>
 </RelativeLayout>

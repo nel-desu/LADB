@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +52,7 @@ class InstallFragment(private val title: String) : Fragment() {
         bind.uninstall.setOnClickListener {
             val packageName = bind.command.text.toString()
             if (packageName.isEmpty()) {
+                Toast.makeText(requireContext(), "没有输入内容", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             viewModel.uninstall(packageName)

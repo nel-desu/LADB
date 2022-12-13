@@ -102,6 +102,6 @@
 
     <string name="pref_file" translatable="false">preferences</string>
     <string name="pref_key_verified" translatable="false">verified</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
