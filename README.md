@@ -1,44 +1,51 @@
-# LADB
+自用 ADB 工具，可以在手机上完成一些简单的操作，基于 [LADB](https://github.com/tytydraco/LADB) 修改
 
-A local ADB shell for Android!
+### 连接设备
 
-# How does it work?
+```
+adb connect x.x.x.x
+```
 
-LADB bundles an ADB server within the app libraries. Normally, this server cannot connect to the local device because it
-requires an active USB connection. However, Android's Wireless ADB Debugging feature allows the server and the client to
-speak to each other locally.
+根据 IP 地址无线连接设备
 
-# Initial Setup
+```
+adb disconnect
+```
 
-Use split-screen more or a pop-out window with LADB and Settings at the same time. This is because Android will
-invalidate the pairing information if the dialog gets dismissed. Add a Wireless Debugging connection, and copy the
-pairing code and port into LADB. Keep both windows open until the Settings dialog dismisses itself.
+断开所有连接
 
-Here is a nice tutorial from XDA on how to do it: [link](https://www.xda-developers.com/debloat-your-phone-run-adb-shell-commands-no-root-no-pc/).
+### 安装卸载
 
-Here is a video tutorial: [link](https://www.youtube.com/shorts/v7hT6rMYqh4).
+```
+adb uninstall x.x.x
+```
 
-# Issues
+通过输入包名卸载程序
 
-LADB is sadly incompatible with Shizuku at the current moment. That means that if you have Shiuzuku installed, LADB will
-usually fail to connect properly. You must uninstall it and reboot to use LADB.
+```
+adb install -r x.x.x
+```
 
-# Troubleshooting
+点击 `安装` 按钮会打开文件选择，需要选择一个 `.apk` 文件进行安装
 
-Most errors can be fixed by clearing the app data for LADB, removing all Wireless Debugging connections from Settings,
-and rebooting.
+### 屏幕截图
 
-# License
+```
+adb shell screencap -p /sdcard/screenshot.png
+```
 
-While this project is GPLv3 licensed, I would like to add a parameter: please do not publish unofficial (user) LADB
-builds to the Google Play Store.
+截取屏幕图像到设备本地
 
-# Support
+```
+adb pull /sdcard/screenshot.png (screenshotFile.absolutePath)
+```
 
-Still confused? Email me at tylernij+LADB@gmail.com.
+然后拉取到本机
 
-We also have a Telegram server here: https://t.me/ladb_support.
+### 查看日志
 
-# Privacy Policy
+```
+adb logcat
+```
 
-LADB does not send any device data outside of the app. Your data is not collected or processed.
+日志会显示在界面中，同时输出到临时文件
